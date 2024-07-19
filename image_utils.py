@@ -3,6 +3,7 @@ import pyheif
 import numpy as np
 import cv2
 
+
 def convert_heic_to_jpeg(heic_path, jpeg_path):
     # Open the HEIC file
     heif_file = pyheif.read(heic_path)
@@ -13,10 +14,10 @@ def convert_heic_to_jpeg(heic_path, jpeg_path):
         "raw", 
         heif_file.mode, 
         heif_file.stride,
-    )
-    
+    )    
     # Save as JPEG
     image.save(jpeg_path, "JPEG")
+
 
 def resize_image(image_path, output_path, width_mm=26, height_mm=32, dpi=300, crop_direction='right'):
     # Open the image
@@ -61,7 +62,7 @@ def resize_image(image_path, output_path, width_mm=26, height_mm=32, dpi=300, cr
     image.save(output_path, "JPEG")
 
 
-def fill_below_black_pixels(mask, center_width_start, center_width_end, start_pic = 800):
+def fill_below_black_pixels(mask, center_width_start, center_width_end, start_pic = 80):
     """
     Fill all pixels below the first black pixel in each column within the central 50% of the image width.
     """
@@ -110,7 +111,7 @@ def change_background_to_white(image_path, output_path, white_threshold=120, gra
     print(adjusted_silhouette_mask)
     
     # Save the adjusted silhouette mask for visualization
-    adjusted_silhouette_image_path = "adjusted_silhouette_mask.jpg"
+    adjusted_silhouette_image_path = "output/adjusted_silhouette_mask.jpg"
     cv2.imwrite(adjusted_silhouette_image_path, adjusted_silhouette_mask)
     print(f"Adjusted silhouette mask saved to {adjusted_silhouette_image_path}.")
     
