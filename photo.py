@@ -1,6 +1,8 @@
 from image_utils import convert_heic_to_jpeg, resize_image, change_background_to_white
 
-CONVERT=0
+CONVERT=1
+RESIZE=0
+CHANGE=0
 # Paths
 path = 'input/photo1.JPG'
 jpeg_path = 'output/converted_image.jpg'
@@ -13,13 +15,15 @@ if CONVERT ==1:
     print(f"Converted HEIC to JPEG")
     path = jpeg_path
 
-resize_image(path, resized_path, crop_direction='top')
-print(f"Resized image to tamaño carnet")
-path = resized_path
+if RESIZE  ==1:
+    resize_image(path, resized_path, crop_direction='top')
+    print(f"Resized image to tamaño carnet")
+    path = resized_path
 
-change_background_to_white(path, background_path)
-print(f"Changed background to white") 
-path =  background_path  
+if CHANGE ==1:
+    change_background_to_white(path, background_path)
+    print(f"Changed background to white") 
+    path =  background_path     
    
 
 
